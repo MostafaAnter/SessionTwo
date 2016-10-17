@@ -28,17 +28,19 @@ import butterknife.ButterKnife;
  */
 
 public class ItemsFaragment extends Fragment {
+
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
 
     @BindView(R.id.swipeRefresh)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
+    // attributes for set up recycler view
     private static final String TAG = "RecyclerViewFragment";
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final int SPAN_COUNT = 2;
 
-
+    // enum to select your layout
     private enum LayoutManagerType {
         GRID_LAYOUT_MANAGER,
         LINEAR_LAYOUT_MANAGER
@@ -105,6 +107,7 @@ public class ItemsFaragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initData();
 
+        // handel swipe refresh listener
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -113,6 +116,9 @@ public class ItemsFaragment extends Fragment {
                 initData();
             }
         });
+
+        // load data when open activity ;)
+        initData();
     }
 
     public void setRecyclerViewLayoutManager(LayoutManagerType layoutManagerType) {
